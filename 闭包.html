@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+var a = 1;
+var fun1 = function(){
+	var b = 2;
+	var func2 = function(){
+		var c = 3;
+		console.log(b)	//2
+		console.log(a) //1
+	}
+	func2();
+	// console.log(c);  //c is not defined
+}
+fun1();
+// /////////////////////////////////////////////////////////////
+
+var func = function(){
+	var a = 1;
+	return function(){
+		a++;
+		console.log(a)
+	}
+}
+var f = func();
+// f();
+// f();
+// f();
+// f();
+// f();
+/////////////////////////////////////////////////////////////
+var extent = {
+	value:0,
+	call:function(){
+		this.value++;
+		console.log(this.value)
+	}
+}
+// extent.call()    1
+// extent.call()	2
+// extent.call()	3
+//////////////////////////////////////////////////////////////
+var Extent = function(){
+	this.value =0;
+};
+Extent.prototype.call = function(){
+	this.value++;
+	console.log(this.value)
+};
+var extent = new Extent();
+extent.call()    //1
+extent.call()	//2
+extent.call()	//3
+</script>
+</html>

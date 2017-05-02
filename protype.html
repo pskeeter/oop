@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+	function Animal(){
+		this.species = "动物";
+	}
+
+	function Cat(name,color){
+		this.name = name;
+		this.color = color;
+	}
+	Cat.prototype.foot = "4只";
+	Cat.prototype.eat = function(){
+		alert("mouse")
+	}
+
+
+	// Cat.prototype = new Animal();
+	// Cat.prototype.constructor = Cat;
+
+	var cat1 = new Cat("大毛","黄色");
+	var cat2 = new Cat("小猫","绿色");
+	console.log(cat1)
+	console.log(cat2)
+	// alert(cat1.species); // 动物
+
+	
+</script>
+</html>
