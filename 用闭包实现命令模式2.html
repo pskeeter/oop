@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  <button id="execute">点我</button>
+  <button id="undo">点我</button>
+</body>
+
+<script>
+var Tv = {
+  open:function(){
+    console.log("打开电视机")
+  },
+  close:function(){
+    console.log("关闭电视机")
+  }
+};
+
+var creteCommand = function(receiver){
+  console.log(receiver)
+  var execute = function(){
+    return receiver.open();
+  }
+  var undo = function(){
+    return receiver.close();
+  }
+  return {
+    execute:execute,
+    undo:undo
+  }
+};
+
+var setCommand = function(command){
+  console.log(command)
+  document.getElementById("execute").onclick = function(){
+    command.execute();
+  }
+  document.getElementById("undo").onclick=function(){
+    command.undo();
+  }
+};
+
+setCommand(creteCommand(Tv))
+</script>
+</html>
