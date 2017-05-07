@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+  // 模式作用：
+  // 1.将函数的封装、请求、调用结合为一体。（连长接收首长的命令，再下发分配）
+  // 2.调用具体的函数解耦命令对象（首长）与接收对象（前线兵）。（连长在中间作为解耦器，做了消息的传递者。）
+  // 3.提高程序模块化的灵活性。（各个作战小分队是某个模块）
+  // 注意事项：不需要接口一致，直接调用函数即可，以免造成浪费。
+    var lian={}; //连
+    //炮兵
+    lian.paobing=function(paobing_num){
+        //更详细
+        alert(paobing_num+'炮兵'+'开始战斗');
+    }
+    //步兵
+    lian.bubing=function(bubing_num){
+        alert(bubing_num+'步兵'+'开始战斗')
+    }
+    //连长
+    lian.lianzhang=function(command){
+        lian[command.type](command.num);
+    }
+
+    //首长开始发命令，把命令发给连长
+    lian.lianzhang({
+        type:'paobing',
+        num:100
+    });
+    lian.lianzhang({
+        type:'bubing',
+        num:500
+    });
+</script>
+</html>

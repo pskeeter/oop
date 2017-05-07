@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  	<div>1</div>
+  	<div>2</div>
+  	<div>3</div>
+  	<div>4</div>
+  	<div>5</div>
+
+</body>
+
+<script>
+// 定义不同会员的折扣
+const discountA = 0.8,
+    discountB = 0.9,
+    discountC = 1;
+  // 定义策略对象
+const strategies = {
+    A: discountA,
+    B: discountB,
+    C: discountC,
+}
+// 定义情景类
+function calculatePrice(type, totalPrice) {
+    return strategies[type]*(totalPrice);
+}
+// 调用函数计算折扣价
+console.log(calculatePrice('A',100)); //80
+</script>
+</html>

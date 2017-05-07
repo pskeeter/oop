@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
+</head>
+<body style="margin: 0;">
+  <ul class="menu">
+    <li class="item">选项1</li>
+    <li class="item">选项2</li>
+    <li class="item">选项3</li>
+    <li class="item">选项4</li>
+    <li class="item">选项5</li>
+    <li class="item">选项6</li>
+  </ul>
+</body>
+
+<script>
+// 击菜单项，进行相应的操作，我们通过jQuery来绑定事件，一般会这么做：
+  $(".item").on("click", function () {
+    console.log($(this).text());
+  })
+  
+  //通过这种方式进行事件绑定，可以减少事件处理程序的数量，这种方式叫做事件委托，也是运用了享元模式的原理。
+  $(".menu").on("click", ".item", function () {
+    alert($(this).text());
+  })
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+// 依赖变量的作用域来实现封装特性
+var myObject = (function(){
+	var _name = 'pskeeter';
+	return {
+		getName : function(){
+			return _name;
+		}
+	}
+})();
+console.log(myObject.getName());	//pskeeter
+console.log(myObject._name);	//undefind
+
+
+/////////////////////////////////////////////////
+
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person.prototype.sayName = function() {
+    console.log(this.name);
+};
+Person.prototype.nationality = "Chinese";
+
+var p1 = new Person("Oli", 18);
+var p2 = new Person("Tro", 24);
+
+console.log(p2.sayName());		//Tro
+console.log(p1.nationality); 	//Chinese
+</script>
+</html>

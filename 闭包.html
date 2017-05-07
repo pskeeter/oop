@@ -46,9 +46,9 @@ var extent = {
 		console.log(this.value)
 	}
 }
-// extent.call()    1
-// extent.call()	2
-// extent.call()	3
+extent.call()    //1
+extent.call()	 //2
+extent.call()	 //3
 //////////////////////////////////////////////////////////////
 var Extent = function(){
 	this.value =0;
@@ -61,5 +61,32 @@ var extent = new Extent();
 extent.call()    //1
 extent.call()	//2
 extent.call()	//3
+
+
+function f1(){
+　　var n=999;
+　　function f2(){
+　　　　alert(n); 
+　　}
+	return f2;
+}
+var result=f1();
+result(); // 999
+
+//闭包最大用处有两个，一个是前面提到的可以读取函数内部的变量，
+//另一个就是让这些变量的值始终保持在内存中。
+function f1(){
+　　var n=999;
+　　nAdd=function(){n+=1}
+　　function f2(){
+　　　　alert(n);
+　　}
+　　return f2;
+}
+var result=f1();
+result(); // 999
+nAdd();
+result(); // 1000
+
 </script>
 </html>

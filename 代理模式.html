@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+
+</body>
+
+<script>
+//myImage 函数只负责做一件事，创建img元素加入到页面中，
+//其中的加载loading图片交给代理函数ProxyImage 去做，当图片加载成功后，
+//代理函数ProxyImage 会通知及执行myImage 函数的方法，
+//同时当以后不需要代理对象的话，我们直接可以调用本体对象的方法即可；
+
+var myImage = (function(){
+  var imgNode = document.createElement("img");
+  document.body.appendChild(imgNode);
+  return {
+      setSrc: function(src) {
+          imgNode.src = src;
+      }
+  }
+})();
+
+// 代理模式
+var ProxyImage = (function(){
+    var img = new Image();
+    img.onload = function(){
+        myImage.setSrc(this.src);
+    };
+    return {
+      setSrc: function(src) {
+        myImage.setSrc("http://img.lanrentuku.com/img/allimg/1212/5-121204193Q9-50.gif");
+        img.src = src;
+      }
+    }
+})();
+
+// 调用方式
+ProxyImage.setSrc("https://img.alicdn.com/tps/i4/TB1b_neLXXXXXcoXFXXc8PZ9XXX-130-200.png");
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+
+</body>
+
+<script>
+  var agg = (function(){
+    var index = 0,
+    // 模拟数据
+    data = [1, 2, 3, 4, 5, 6, 7, 8 ,9],
+    length = data.length,
+    arr = [];
+    // 提供对外API，根据具体的需求提供相应的接口。以下为示例
+    // 一般会有next, hasNext, current, rewind等接口。数据中的索引是相当主要的，需要注意
+    return {
+      // 返回每隔一个元素的数组元素
+      next : function() {
+        // 如果数据到了末端，返回null
+        if(!this.hasNext) {
+          return null;
+        }
+        // 从索引0开始            
+        var element = data[index];
+        // index 索引可以增加简单的需求算法
+        index += 2;
+        return element;
+      },
+      // 是否有下一条数据
+      hasNext : function() {
+        return index < length;
+      },
+      // 重置索引
+      rewind : function() {
+        return index = 0;
+      },
+      // 获取当前数据
+      current : function() {
+        return data[index];
+      },
+      unDivision : function() {
+        return arr;
+      }
+    };
+  })();
+
+  // 测试
+  while (agg.hasNext()){
+    console.log(agg.next());
+  }
+  //当然，你也可以通过额外的方法来重置数据，然后再继续其它操作：
+  // 重置索引
+  agg.rewind();
+  console.log(agg.current()); //1
+</script>
+</html>

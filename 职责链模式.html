@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+    function laoban(xiangmujingli){  
+        if(xiangmujingli){  
+            this.xiangmujingli=xiangmujingli;  
+        }  
+    }  
+    laoban.prototype.write=function(php){  
+        this.xiangmujingli.write(php);  
+    }  
+  
+    function xiangmujingli(coder){  
+        if(coder){  
+            this.coder=coder;  
+        }  
+    }  
+    xiangmujingli.prototype.write=function(php){  
+        this.coder.write(php);  
+    }  
+    function coder(php){  
+        //this.write(php);  
+    }  
+    coder.prototype.write=function(php){  
+        console.log('coding....'+php);  
+    }  
+    //begin 发起 coder结束  
+    var begin=new laoban(new xiangmujingli(new coder()));  
+    begin.write('php');   //coding....php
+</script>
+</html>

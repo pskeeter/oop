@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+// 可以清楚的看到，如果你的登录状态改变了的话，会有一系列的订阅程序发生.而且每个订阅之间互不干扰，你可以随便添加或者删除订阅，这都不会影响你的登录的执行逻辑.
+login.on("click",function(){
+    var name = $(".username").val().trim;
+    http.login(name)  //使用异步Deferred书写
+    .then(function(data){
+        Event.trigger("login",data);  //发布我登录成功的状态，并传入参数
+    })
+});
+var header = (function() {
+    Event.listen("login", function(data) {
+        header.changeAvator(data);
+    })
+    return {
+        changeAvator: function(data) {
+            //...换头像
+        }
+    }
+})();
+var bar = (function() {
+    Event.listen("login", function(data) {
+        bar.changeName(data);
+    })
+    return {
+        changeName: function(data) {
+            //...换名字
+        }
+    }
+})();
+</script>
+</html>

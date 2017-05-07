@@ -17,9 +17,24 @@ var obj={
 		return this.myName;
 	}
 };
-console.log(obj.getName());
+console.log(obj.getName());	//seven
+
 var getName2 = obj.getName;
 console.log(getName2());
+
+
+window.name = 'global';
+var getName3 = function(){
+	return this.name;
+}
+console.log(getName3());	//global
+
+var myClass = function(){
+	this.name = '幼稚园2班';
+}
+var obj = new myClass();
+console.log(obj.name);	//幼稚园2班
+
 
 var a = function(){
 	console.log(this)
@@ -41,5 +56,35 @@ a()
 // -------------------------
 console.log(Math.max.apply(Math,[1,2,3,4,5]))
 console.log(Math.max.apply(null,[1,2,3,4,5]))
+
+
+var name = "banana";
+var fruits = {
+     name: "apple"
+};
+
+function say() {
+    console.log("I'm " + this.name);
+}
+
+say();  //I'm banana
+say.call(fruits);  //I'm apple
+
+// 事实上，call/apply最常用的还是改变函数内部的this指向。
+var obj1 ={
+	name:'one'
+};
+var obj2 = {
+	name:'two'
+};
+window.name = 'three';
+
+var getName4 = function(){
+	alert(this.name);
+}
+
+getName4();	//three
+getName4.call(obj1);	//one
+getName4.call(obj2);	//two
 </script>
 </html>

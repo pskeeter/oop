@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  
+</body>
+
+<script>
+// 把不变的隔离出来，所有动物都会发出叫声
+var makeSound = function(animal){
+	animal.sound();
+}
+// 把可变的各自封装，体现对象的多态性
+var Duck = function(){}
+Duck.prototype.sound = function(){
+	console.log('嘎嘎嘎');
+};
+
+
+var Chicken = function(){};
+Chicken.prototype.sound = function(){
+	console.log('咯咯咯');
+};
+
+// 发出指令
+var duckSound = makeSound(new Duck());
+var chickenSound = makeSound(new Chicken());
+console.log(duckSound,chickenSound);
+
+</script>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+  	<div>1</div>
+  	<div>2</div>
+  	<div>3</div>
+  	<div>4</div>
+  	<div>5</div>
+
+</body>
+
+<script>
+    var mySingleton = (function () {
+      // Instance 存储一个单例实例的引用
+      var instance;
+      function init() {
+        // Singleton
+        // 私有的方法和变量
+        function privateMethod(){console.log( "I am private" );}    
+        var privateVariable = "Im also private";
+
+        return {   
+          // 共有的方法和变量
+          publicMethod: function () {
+            console.log( "The public can see me!" );
+          },
+        
+          publicProperty: "I am also public"
+        };   
+      };
+    
+      return {
+        // 如果实例不存在，那么创建一个
+        getInstance: function () {    
+          if ( !instance ) {
+            instance = init();
+          }   
+          return instance;
+        }    
+      };    
+    })();
+    
+    var singleA = mySingleton;
+    var singleB = mySingleton;
+    console.log( singleA === singleB ); // true
+
+
+
+
+
+var SingletonTester = (function () {
+  // options: an object containing configuration options for the singleton
+  // e.g var options = { name: "test", pointX: 5}; 
+  function Singleton( options )  {
+    // set options to the options supplied
+    // or an empty object if none are provided
+    options = options || {};
+    // set some properties for our singleton
+    this.name = "SingletonTester";
+    this.pointX = options.pointX || 6;
+    this.pointY = options.pointY || 6; 
+  }
+  // our instance holder 
+  var instance;
+  // an emulation of static variables and methods
+  var _static  = {  
+    name:  "SingletonTester",
+    // Method for getting an instance. It returns
+    // a singleton instance of a singleton object
+    getInstance:  function( options ) {   
+      if( instance  ===  undefined )  {    
+        instance = new Singleton( options );   
+      }   
+        return  instance;      
+    } 
+  }; 
+  return  _static;
+})();
+
+var singletonTest  =  SingletonTester.getInstance({
+  pointX:  5
+});
+// Log the output of pointX just to verify it is correct
+// Outputs: 5
+console.log( singletonTest.pointX ); 
+
+
+var Color = (function(){
+    // 私有变量
+    var color = {
+        'RED': '#ff0000',
+        'YELLOW': '#ffff00',
+        'BLUE': '#0000ff'
+    }
+    // 返回访问方法对象
+    return {
+        // 常量获取方法
+        get: function(name){
+            return color[name] ? color[name] : null;
+        }
+    }
+})();
+
+var color = Color.get('BLUE');
+console.log(color);    // #0000ff
+</script>
+</html>
