@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+</body>
+
+<script>
+function MacBook(){
+    this.cost = function(){return 41900};
+    this.screenSize = function(){return 12}
+}
+
+//Decorator 1 - 增加記憶體需多增$10000
+function Memory(mackbook){
+    var v = mackbook.cost();
+    mackbook.cost = function(){
+        return v + 10000;
+    }
+}
+
+//Decorator 2 - 增加刻字服務多增$1000
+function Engraving(mackbook){
+    var v = mackbook.cost();
+    mackbook.cost = function(){
+        return v + 1000;
+    }
+}
+
+//Decorator 3 - 增加保固需多增$8590
+function Insurance(mackbook){
+    var v = mackbook.cost();
+    mackbook.cost = function(){
+        return v + 8590;
+    }
+}
+
+var mb = new MacBook();
+
+//增加記憶體、刻字、保固
+Memory(mb);
+Engraving(mb);
+Insurance(mb);
+console.log(mb.cost()); //61490
+console.log(mb.screenSize()); //12
+</script>
+
+</html>

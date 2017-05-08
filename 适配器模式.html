@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+</body>
+
+<script>
+var googleMap = {
+  show:function(){
+    console.log('谷歌地图')
+  }
+};
+var baiduMap = {
+  display:function(){
+    console.log('百度地图')
+  }
+};
+// 适配器
+var baiduMapAdapter = {
+  show:function(){
+    return baiduMap.display();
+  }
+}
+var renderMap = function(map){
+  if(map.show instanceof Function){
+    map.show();
+  }
+};
+
+renderMap(googleMap);
+renderMap(baiduMapAdapter);
+</script>
+
+</html>

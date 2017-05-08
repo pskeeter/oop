@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prototype</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, height=device-height,initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+</head>
+<body style="margin: 0;">
+</body>
+
+<script>
+  //首先给出不同状态模式的点灯程序实现  
+  var Light = function(){  
+    this.state = "off";  
+    this.button = null;  
+  };  
+
+  Light.prototype.init = function(){  
+    var button = document.createElement( "button" ),  
+        self = this;  
+    button.innerHTML = "开关";  
+    this.button = document.body.appendChild( button );  
+    this.button.onclick = function(){  
+      self.buttonWasPressed();  
+    }  
+  }  
+
+  Light.prototype.buttonWasPressed = function(){  
+    if( this.state === "on" ){  
+      console.log( "关灯" );  
+      this.state = "off"  
+    }else if( this.state === "off" ){  
+      console.log( "开灯" );  
+      this.state = "on";  
+    }  
+  }  
+  var light = new Light();  
+  light.init() 
+</script>
+
+</html>
